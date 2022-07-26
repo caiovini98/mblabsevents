@@ -1,7 +1,8 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from '../pages/Home';
-import Eventos from '../pages/Eventos';
+import MeusEventos from '../pages/MeusEventos';
+import Evento from '../pages/Evento';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,7 +16,14 @@ export default function StackRoutes() {
           headerShown: false,
         }}
       />
-      <Stack.Screen name="Eventos" component={Eventos} />
+      <Stack.Screen name="MeusEventos" component={MeusEventos} />
+      <Stack.Screen
+        name="Evento"
+        component={Evento}
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack.Navigator>
   );
 }

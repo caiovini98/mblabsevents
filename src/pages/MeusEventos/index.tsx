@@ -1,12 +1,12 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 
-const Eventos = () => {
+const MeusEventos = () => {
   return (
     <View>
-      <Text>Tela de Eventos</Text>
+      <Text>Tela de MeusEventos</Text>
     </View>
   );
 };
 
-export default Eventos;
+export default MeusEventos;

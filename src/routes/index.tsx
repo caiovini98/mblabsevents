@@ -1,8 +1,8 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import Eventos from '../pages/Eventos';
 import StackRoutes from './stackRoutes';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import MeusEventos from '../pages/MeusEventos';
 
 const Drawer = createDrawerNavigator();
 
@@ -30,8 +30,8 @@ export default function Routes() {
         }}
       />
       <Drawer.Screen
-        name="Eventos"
-        component={Eventos}
+        name="MeusEventos"
+        component={MeusEventos}
         options={{
           title: 'Meus Eventos',
           drawerIcon: ({size, color}) => (

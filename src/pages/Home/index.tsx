@@ -12,8 +12,15 @@ import {
 } from './styles';
 import Header from '../../components/Header';
 import SliderItem from '../../components/SliderItem';
+import {useNavigation} from '@react-navigation/native';
 
 const Home = () => {
+  const navigation = useNavigation();
+
+  const navigateDetailsPage = item => {
+    navigation.navigate('Evento', {item});
+  };
+
   return (
     <Container>
       <Header title="MB Events" />
@@ -40,7 +47,7 @@ const Home = () => {
           renderItem={({item}) => (
             <SliderItem
               data={item}
-              // navigateDetailsPage={() => navigateDetailsPage(item)}
+              navigateDetailsPage={() => navigateDetailsPage(item)}
             />
           )}
         />
@@ -53,7 +60,7 @@ const Home = () => {
           renderItem={({item}) => (
             <SliderItem
               data={item}
-              // navigateDetailsPage={() => navigateDetailsPage(item)}
+              navigateDetailsPage={() => navigateDetailsPage(item)}
             />
           )}
         />
