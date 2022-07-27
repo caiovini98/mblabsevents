@@ -9,10 +9,10 @@ export default function SliderItem({data, navigateDetailsPage}) {
       {/* <Container activeOpacity={0.71}> */}
       <BannerItem
         source={{
-          uri: `https://i.ytimg.com/vi/k42HgNZemCQ/maxresdefault.jpg`,
+          uri: `${data.image}`,
         }}
       />
-      <Text>{data} nome do evento</Text>
+      <Text>{data.title}</Text>
     </Container>
   );
 }

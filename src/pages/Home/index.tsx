@@ -13,8 +13,11 @@ import {
 import Header from '../../components/Header';
 import SliderItem from '../../components/SliderItem';
 import {useNavigation} from '@react-navigation/native';
+import {Response} from '../../models/Response';
+import {Event} from '../../models/Event';
 
 const Home = () => {
+  const jsonData: Response = require('../../../events.json');
   const navigation = useNavigation();
 
   const navigateDetailsPage = item => {
@@ -29,12 +32,11 @@ const Home = () => {
         <Title>Estreia</Title>
         <BannerButton
           activeOpacity={0.9}
-          // onPress={() => navigateDetailsPage(movieBanner)}
-        >
+          onPress={() => navigateDetailsPage(jsonData.premiere)}>
           <Banner
             resizeMethod="resize"
             source={{
-              uri: `https://tm.ibxk.com.br/2022/05/04/04181552447728.jpg?ims=532x336`,
+              uri: `${jsonData.premiere.image}`,
             }}
           />
         </BannerButton>
@@ -43,7 +45,7 @@ const Home = () => {
           keyExtrator={item => String(item.id)}
           horizontal
           showsHorizontalScrollIndicator={false}
-          data={[0, 1, 2, 3, 4, 5]}
+          data={jsonData.highlights}
           renderItem={({item}) => (
             <SliderItem
               data={item}
@@ -56,7 +58,7 @@ const Home = () => {
           keyExtrator={item => String(item.id)}
           horizontal
           showsHorizontalScrollIndicator={false}
-          data={[0, 1, 2, 3, 4, 5]}
+          data={jsonData.popular}
           renderItem={({item}) => (
             <SliderItem
               data={item}

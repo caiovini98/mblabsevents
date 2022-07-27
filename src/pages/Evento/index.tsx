@@ -2,7 +2,6 @@ import {Text, ScrollView} from 'react-native';
 import React from 'react';
 import {
   Banner,
-  ButtonLink,
   Container,
   Description,
   Header,
@@ -19,13 +18,18 @@ import {
   TextComprarIngresso,
 } from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
+import {Event} from '../../models/Event';
 
-const Evento = ({item}) => {
-  const [number, onChangeNumber] = React.useState<number>(0);
+const Evento = (props: any) => {
+  const {route} = props;
   const navigation = useNavigation();
-  const route = useRoute();
-  //   console.log('route.params: ', route.params?.item);
+
+  const [quantityTicket, setQuantityTicket] = React.useState<number>(0);
+  const [quantityHalfTicket, setQuantityHalfTicket] = React.useState<number>(0);
+  const {item} = route.params;
+  const event: Event = item;
+
   return (
     <Container>
       <Header>
@@ -33,10 +37,9 @@ const Evento = ({item}) => {
           <Icon name="keyboard-backspace" size={28} color="white" />
         </HeaderButton>
       </Header>
-
       <Banner
         source={{
-          uri: `https://tm.ibxk.com.br/2022/05/04/04181552447728.jpg?ims=532x336`,
+          uri: `${event.image}`,
         }}
         resizeMethod="resize"
       />
@@ -47,51 +50,52 @@ const Evento = ({item}) => {
         }}>
         <Icon name="share-variant" size={24} color="black" />
       </ShareButton>
-      <Title numberOfLines={2}>Evento</Title>
+      <Title numberOfLines={2}>{event.title}</Title>
       <EventDetails>
-        <SubTitle numberOfLines={2}>30/07/2022, às 20h</SubTitle>
+        <SubTitle numberOfLines={2}>
+          {event.date.date}, às {event.date.hour}
+        </SubTitle>
         <SubTitle font="bold" numberOfLines={2}>
-          Cine Theatro Central
+          {event.space}
         </SubTitle>
       </EventDetails>
       <SubTitle numberOfLines={2}>
-        Praça João Pessoa, Calçadão da Rua Halfeld, 82
+        {event.location.street}, {event.location.district},{' '}
+        {event.location.number === '' ? 'S/N' : event.location.number}
       </SubTitle>
-      <SubTitle numberOfLines={2}>Centro Juiz de Fora, Minas Gerais</SubTitle>
+      <SubTitle numberOfLines={2}>
+        {event.location.complement === ''
+          ? 'Sem complemento'
+          : event.location.complement}
+      </SubTitle>
+      <SubTitle numberOfLines={2}>
+        {event.location.city}, {event.location.state}
+      </SubTitle>
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <Title>Descrição</Title>
-        <Description>
-          O espetáculo "O Aviador e o Príncipe" uma produção de Patrícia
-          Oliveira, realizado para todas as idades irá apresentar uma leitura
-          filosófica e contemporânea da obra do francês Antoine de Saint-Exupéry
-          "O Pequeno Príncipe". É escrito pelos filósofos e dramaturga Regina
-          Schöpke e Mauro Baladi, a partir da relação imaginária de um aviador,
-          que encontra-se consigo mesmo, em uma viagem de autoconhecimento no
-          deserto, após fazer um pouso forçado de seu avião correio, e bater a
-          sua cabeça
-        </Description>
+        <Description>{event.description}</Description>
         <ViewQuantity>
           <ContainerPrice>
             <TipoIngresso font="bold">Inteira</TipoIngresso>
-            <TipoIngresso>R$ 50.00</TipoIngresso>
+            <TipoIngresso>R$ {event.price}</TipoIngresso>
           </ContainerPrice>
           <InputQuantity
-            onChangeText={(value: any) => onChangeNumber(value)}
-            value={String(number)}
+            onChangeText={(value: number) => setQuantityTicket(value)}
+            value={String(quantityTicket)}
             keyboardType="numeric"
           />
           <ContainerPrice>
             <TipoIngresso font="bold">Meia entrada</TipoIngresso>
-            <TipoIngresso>R$ 25.00</TipoIngresso>
+            <TipoIngresso>R$ {event.price / 2}</TipoIngresso>
           </ContainerPrice>
           <InputQuantity
-            onChangeText={(value: any) => onChangeNumber(value)}
-            value={String(number)}
+            onChangeText={(value: number) => setQuantityHalfTicket(value)}
+            value={String(quantityHalfTicket)}
             keyboardType="numeric"
           />
         </ViewQuantity>
-        <ButtonComprarIngresso onPress={() => console.log('Comprou ')}>
+        <ButtonComprarIngresso onPress={() => console.log('Comprou')}>
           <TextComprarIngresso>COMPRAR INGRESSO(S)</TextComprarIngresso>
         </ButtonComprarIngresso>
       </ScrollView>

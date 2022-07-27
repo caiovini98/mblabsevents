@@ -47,6 +47,7 @@ export const Banner = styled.Image`
 export const BannerButton = styled.TouchableOpacity``;
 
 export const SliderMovies = styled.FlatList`
+  margin-bottom: 12px;
   height: 220px;
   padding: 0 14px;
 `;
