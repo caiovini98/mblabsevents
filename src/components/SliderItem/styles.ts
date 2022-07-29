@@ -17,16 +17,4 @@ export const BannerItem = styled.Image`
 export const Title = styled.Text`
   color: #fff;
   font-size: 14px;
-  padding-top: 8px;
-`;
-
-export const RateContainer = styled.View`
-  flex-direction: row;
-  align-items: center;
-`;
-
-export const Rate = styled.Text`
-  padding-left: 4px;
-  color: #fff;
-  font-size: 12px;
 `;

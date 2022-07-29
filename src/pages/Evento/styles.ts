@@ -1,4 +1,3 @@
-import {View} from 'react-native';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
@@ -31,19 +30,6 @@ export const Banner = styled.Image`
   height: 350px;
   border-bottom-left-radius: 70px;
   border-bottom-right-radius: 70px;
-`;
-
-export const ButtonLink = styled.TouchableOpacity`
-  background-color: #e72f49;
-  width: 63px;
-  height: 63px;
-  border-radius: 35px;
-  position: absolute;
-  top: 305px;
-  right: 100px;
-  justify-content: center;
-  align-items: center;
-  z-index: 99;
 `;
 
 export const ShareButton = styled.TouchableOpacity`
@@ -79,26 +65,6 @@ export const SubTitle = styled.Text`
   color: #fff;
   font-size: 14px;
   padding: 2px 14px;
-`;
-
-export const ContentArea = styled.View`
-  flex-direction: row;
-  align-items: center;
-  padding: 0 14px;
-  justify-content: space-between;
-`;
-
-export const Rate = styled.Text`
-  font-size: 18px;
-  font-weight: bold;
-  color: #fff;
-`;
-
-export const ListGenres = styled.FlatList`
-  padding-left: 14px;
-  margin: 8px 0;
-  max-height: 35px;
-  min-height: 35px;
 `;
 
 export const Description = styled.Text`

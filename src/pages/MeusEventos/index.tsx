@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {Container, ListMovies} from './styles';
+import {Container, ListEvents} from './styles';
 import Header from '../../components/Header';
 import FavoriteItem from '../../components/FavoriteItem';
 import {EventContext} from '../../contexts/EventContext';
@@ -12,7 +12,7 @@ const MeusEventos = () => {
     <Container>
       <Header title="Meus Eventos" />
 
-      <ListMovies
+      <ListEvents
         showsVerticalScrollIndicator={false}
         data={events}
         keyExtractor={(item: Event) => item.title}

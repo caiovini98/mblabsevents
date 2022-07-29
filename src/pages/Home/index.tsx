@@ -1,15 +1,6 @@
 import {ScrollView, Text} from 'react-native';
 import React from 'react';
-import {
-  Container,
-  Title,
-  Banner,
-  BannerButton,
-  Input,
-  SearchButton,
-  SearchContainer,
-  SliderMovies,
-} from './styles';
+import {Container, Title, Banner, BannerButton, SliderEvents} from './styles';
 import Header from '../../components/Header';
 import SliderItem from '../../components/SliderItem';
 import {useNavigation} from '@react-navigation/native';
@@ -41,7 +32,7 @@ const Home = () => {
           />
         </BannerButton>
         <Title>Destaques</Title>
-        <SliderMovies
+        <SliderEvents
           keyExtrator={item => String(item.id)}
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -54,7 +45,7 @@ const Home = () => {
           )}
         />
         <Title>Mais Populares</Title>
-        <SliderMovies
+        <SliderEvents
           keyExtrator={item => String(item.id)}
           horizontal
           showsHorizontalScrollIndicator={false}

@@ -6,4 +6,4 @@ export const Container = styled.SafeAreaView`
   padding: 4px 0;
 `;
 
-export const ListMovies = styled.FlatList``;
+export const ListEvents = styled.FlatList``;

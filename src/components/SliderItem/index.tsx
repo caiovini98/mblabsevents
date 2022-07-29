@@ -1,18 +1,15 @@
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
-import {Container, BannerItem, RateContainer, Rate, Title} from './styles';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Container, BannerItem, Title} from './styles';
 
 export default function SliderItem({data, navigateDetailsPage}) {
   return (
     <Container activeOpacity={0.71} onPress={() => navigateDetailsPage(data)}>
-      {/* <Container activeOpacity={0.71}> */}
       <BannerItem
         source={{
           uri: `${data.image}`,
         }}
       />
-      <Text>{data.title}</Text>
+      <Title>{data.title}</Title>
     </Container>
   );
 }
