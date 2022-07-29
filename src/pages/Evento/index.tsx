@@ -1,4 +1,4 @@
-import {Alert, ScrollView, ToastAndroid} from 'react-native';
+import {Alert, ScrollView, ToastAndroid, Share} from 'react-native';
 import React, {useContext} from 'react';
 import {
   Banner,
@@ -52,6 +52,28 @@ const Evento = (props: any) => {
     navigation.goBack();
   };
 
+  const shareLink = async () => {
+    try {
+      const result = await Share.share({
+        message: `O filme ${event?.title} pode ser facilmente visualizado acessando o aplicativo`,
+        title: `${event?.title}`,
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          console.log(
+            'Compartilhado com o tipo de atividade de: ' + result.activityType,
+          );
+        } else {
+          console.log('Compartilhado');
+        }
+      } else if (result.action === Share.dismissedAction) {
+        console.log('Descartado');
+      }
+    } catch (error) {
+      console.log('Erro: ', error);
+    }
+  };
+
   return (
     <Container>
       <Header>
@@ -65,11 +87,7 @@ const Evento = (props: any) => {
         }}
         resizeMethod="resize"
       />
-      {/* <ShareButton onPress={shareLink}> */}
-      <ShareButton
-        onPress={() => {
-          console.log('Compartilhar');
-        }}>
+      <ShareButton onPress={shareLink}>
         <Icon name="share-variant" size={24} color="black" />
       </ShareButton>
       <Title numberOfLines={2}>{event.title}</Title>
