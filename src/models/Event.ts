@@ -9,4 +9,7 @@ export type Event = {
   location: Location;
   image: string;
   description: string;
+  valueTotal?: number;
+  quantityTicket?: number;
+  quantityHalfTicket?: number;
 };

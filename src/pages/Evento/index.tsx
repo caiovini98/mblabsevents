@@ -1,5 +1,5 @@
-import {Text, ScrollView} from 'react-native';
-import React from 'react';
+import {Alert, ScrollView, ToastAndroid} from 'react-native';
+import React, {useContext} from 'react';
 import {
   Banner,
   Container,
@@ -18,17 +18,39 @@ import {
   TextComprarIngresso,
 } from './styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {EventContext} from '../../contexts/EventContext';
 import {useNavigation} from '@react-navigation/native';
 import {Event} from '../../models/Event';
 
 const Evento = (props: any) => {
   const {route} = props;
   const navigation = useNavigation();
+  const {buyEvent} = useContext(EventContext);
 
   const [quantityTicket, setQuantityTicket] = React.useState<number>(0);
   const [quantityHalfTicket, setQuantityHalfTicket] = React.useState<number>(0);
   const {item} = route.params;
   const event: Event = item;
+
+  const addEvent = () => {
+    if (quantityTicket === 0 && quantityHalfTicket === 0) {
+      Alert.alert('Escolha a quantidade de ingressos');
+      return;
+    }
+
+    const {price} = event;
+    const totalValue =
+      price * quantityTicket + (price / 2) * quantityHalfTicket;
+    ToastAndroid.showWithGravityAndOffset(
+      'Ingresso comprado com sucesso!',
+      ToastAndroid.LONG,
+      ToastAndroid.BOTTOM,
+      25,
+      50,
+    );
+    buyEvent(event, totalValue, quantityTicket, quantityHalfTicket);
+    navigation.goBack();
+  };
 
   return (
     <Container>
@@ -95,7 +117,7 @@ const Evento = (props: any) => {
             keyboardType="numeric"
           />
         </ViewQuantity>
-        <ButtonComprarIngresso onPress={() => console.log('Comprou')}>
+        <ButtonComprarIngresso onPress={() => addEvent()}>
           <TextComprarIngresso>COMPRAR INGRESSO(S)</TextComprarIngresso>
         </ButtonComprarIngresso>
       </ScrollView>
