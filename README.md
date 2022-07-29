@@ -33,7 +33,7 @@ $ npm run android
 # Na tela que foi aberta clique repetidamente sobre o Número da Versão até aparecer uma mensagem indicando que as opções de desenvolvedor foram ativadas.
 
 # Feito isso volte até o Menu Sistema para ativar a depuração. Procure pela opção Opções de desenvolvedor, que agora deve aparecer na sua lista.
-# Nesse Menu, ativi-o selecionando o primeiro botão que deve estar como Desativado e depois ative a Depuração USB, logo mais abaixo dessa lista.
+# Nesse Menu, ative-o selecionando o primeiro botão que deve estar como Desativado e depois ative a Depuração USB, logo mais abaixo dessa lista.
 
 # Para verificar se o dispositivo está conectado corretamente, abra o CMD e rode o comando abaixo
 $ adb devices
